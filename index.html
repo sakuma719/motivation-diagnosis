@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>あなたのやる気スイッチはどっち？</title>
+  <!-- BEGIN style.css -->
+<style>
+:root{--ink:#22352f;--muted:#62716c;--green:#226c51;--line:#dbe4de;--bg:#f5f7f3;--blue:#356998}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans JP",sans-serif;line-height:1.8}button,input{font:inherit}.header{max-width:1100px;margin:auto;padding:25px 32px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.brand{text-decoration:none;color:var(--green);font-size:24px;font-weight:800;letter-spacing:2px}.brand span{font-size:12px;letter-spacing:0;margin-left:16px;color:var(--muted)}.badge{font-size:12px;border:1px solid var(--line);border-radius:30px;padding:4px 12px}main{max-width:840px;margin:auto;padding:50px 24px}.intro{text-align:center}.eyebrow{font-size:12px;font-weight:700;letter-spacing:3px;color:var(--green);margin:0 0 14px}h1{font-size:clamp(29px,4.5vw,44px);line-height:1.5;letter-spacing:.03em;margin:0 0 22px}h1 span{color:var(--green)}.lead{color:var(--muted);font-size:16px;margin:0 auto 24px}.meta{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.guide{text-align:left;background:#eaf0e8;border-radius:12px;padding:20px 24px;margin:32px 0}.guide strong{font-size:14px}.guide p{margin:4px 0 0;font-size:14px}.progress-panel{margin:36px 0 24px}.progress-panel>div{display:flex;justify-content:space-between;gap:12px;align-items:center;font-size:14px}#progress-text{color:var(--green);font-size:12px;white-space:nowrap}progress{display:block;width:100%;height:6px;border:0;border-radius:4px;overflow:hidden;margin-top:12px;appearance:none;background:var(--line)}progress::-webkit-progress-bar{background:var(--line)}progress::-webkit-progress-value{background:var(--green)}progress::-moz-progress-bar{background:var(--green)}fieldset{min-width:0;background:white;border:1px solid var(--line);border-radius:12px;margin:0 0 16px;padding:24px}legend{float:left;width:100%;padding:0;margin-bottom:20px;font-size:16px;font-weight:600}.question-number{display:block;font-size:11px;letter-spacing:2px;color:var(--green);margin-bottom:8px}.options{clear:both;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}.option{position:relative;cursor:pointer}.option input{position:absolute;opacity:0;width:1px;height:1px}.option span{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:93px;border:1px solid var(--line);border-radius:8px;font-size:11px;text-align:center;padding:9px 5px;line-height:1.5;transition:background .15s}.option b{font-size:18px;margin-bottom:6px;font-weight:600}.option:hover span{background:#f0f5ef;border-color:#86a694}.option input:checked+span{background:#e7f2e9;border:2px solid var(--green);color:var(--green);padding:8px 4px}.option input:focus-visible+span{outline:3px solid #e8a339;outline-offset:3px}.footnote{text-align:center;font-size:12px;color:var(--muted);margin-top:24px}.result{text-align:center;background:white;border:1px solid var(--line);border-radius:16px;padding:36px 28px;scroll-margin-top:24px}.result:focus{outline:none}.result h2{font-size:22px;font-weight:500;line-height:1.5;margin:0 0 12px}.scores,.types{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:28px 0}.score{border-radius:12px;padding:14px 16px;background:#edf5ed;color:var(--green)}.score.prevention{background:#edf3f9;color:var(--blue)}.score h3{font-size:14px;margin:0}.score p{margin:4px 0;font-size:12px}.score strong{font-size:32px;line-height:1.5}.insight{text-align:left;background:var(--bg);border-radius:10px;padding:20px}.insight h3,.types h3{font-size:16px;margin:0 0 8px}.insight p,.types p{font-size:14px;margin:0}.types-title{margin:32px 0 0;font-size:18px}.types{text-align:left}.types article{border:1px solid var(--line);border-radius:10px;padding:20px}.type-label{color:var(--green);font-size:12px;font-weight:600}.blue{color:var(--blue)}.note,.disclaimer{font-size:12px;color:var(--muted);text-align:left}.disclaimer{margin:36px 8px 0}button{border:0;background:var(--green);color:white;padding:14px 28px;border-radius:8px;font-weight:600;cursor:pointer;margin-top:20px}button:hover{background:#174e3a}button:focus-visible{outline:3px solid #e8a339;outline-offset:3px}button span{margin-left:16px}footer{text-align:center;border-top:1px solid var(--line);padding:24px;font-size:11px;color:var(--muted)}[hidden]{display:none!important}@media(max-width:550px){.header{padding:18px 20px}.brand span{display:none}main{padding:32px 16px}fieldset{padding:20px 12px}.options{gap:5px}.option span{font-size:10px;padding:8px 3px;min-height:100px}.option input:checked+span{padding:7px 2px}legend{font-size:15px}.meta{gap:12px}.guide{padding:16px}.progress-panel>div{font-size:12px}.result{padding:28px 16px}.result h2{font-size:20px}.types{grid-template-columns:1fr}.scores{gap:10px}.score{padding:12px 8px}}
+
+.navigation{display:flex;justify-content:space-between;gap:12px}.navigation button{margin-top:0;min-height:48px}.navigation #previous{background:#eaf0e8;color:var(--green)}.navigation button:disabled{opacity:.5;cursor:default}legend:focus{outline:none}.chart{margin:24px 0;text-align:left}.bar-row{display:grid;grid-template-columns:80px 1fr 58px;gap:12px;align-items:center;margin:16px 0;font-size:13px}.bar-row span{text-align:right;font-variant-numeric:tabular-nums}meter{width:100%;height:20px;border:0;background:var(--line);border-radius:6px;overflow:hidden;appearance:none}meter::-webkit-meter-bar{background:var(--line);border:0;border-radius:6px}meter::-webkit-meter-optimum-value{background:var(--green)}meter::-moz-meter-bar{background:var(--green)}#prevention-bar::-webkit-meter-optimum-value{background:var(--blue)}#prevention-bar::-moz-meter-bar{background:var(--blue)}@media(max-width:550px){h1{font-size:clamp(22px,6vw,29px)}.bar-row{grid-template-columns:68px 1fr 52px;gap:8px;font-size:12px}.navigation button{padding:12px 18px}}
+
+/* Result content takes priority over the type label and scores. */
+#result-description{font-size:24px;font-weight:600;line-height:1.7;color:var(--ink);max-width:640px;margin-bottom:24px;text-wrap:pretty}
+.result .scores{margin:20px 0}
+.team-illustration{display:block;width:104px;height:76px;margin-bottom:16px}
+.types .type-label{display:block;font-size:13px;margin-bottom:8px}
+.types h3{line-height:1.8;font-weight:600;margin-bottom:14px}
+.types .team-example{font-size:14px;line-height:1.9;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+.team-summary{background:var(--bg);border-radius:10px;padding:20px 24px;text-align:left;font-size:15px;line-height:1.9;margin:0}
+@media(max-width:550px){#result-description{font-size:22px;line-height:1.75}.score strong{font-size:30px}.types article{padding:20px}.team-illustration{width:96px;height:70px;margin-bottom:12px}.team-summary{padding:18px;font-size:14px}}
+
+/* Four-type overview and primary/secondary actions. */
+button{background:#246C53}
+.cta-group{display:flex;justify-content:center;align-items:stretch;gap:12px;margin-top:28px}
+.cta-group button{margin:0;min-height:52px}
+.primary-cta{background:#246C53;color:white}
+.primary-cta small{display:block;font-size:12px;font-weight:400;margin-top:3px}
+.secondary-cta{background:white;color:#246C53;border:1px solid #abc3b8;font-weight:500}
+.secondary-cta:hover{background:#f2f7f4}
+#type-list:focus{outline:none}
+.type-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:28px 0;text-align:left}
+.type-card{background:var(--type-background);border-radius:14px;padding:24px;color:var(--ink);border-top:4px solid var(--type-accent)}
+.type-a{--type-background:#FBE7E0;--type-accent:#DA745C}
+.type-b{--type-background:#E1F2EB;--type-accent:#3F9376}
+.type-c{--type-background:#F4EFDC;--type-accent:#AB8C40}
+.type-d{--type-background:#E4EEF8;--type-accent:#467DAD}
+.type-card-heading{display:flex;align-items:center;gap:10px}
+.type-letter{display:grid;place-items:center;background:white;color:var(--ink);border:2px solid var(--type-accent);border-radius:10px;min-width:40px;height:40px;font-size:21px;font-weight:700}
+.type-card h3{margin:0;font-size:17px;font-weight:600}
+.person-illustration{display:block;width:120px;height:88px;color:var(--type-accent);margin:20px 0 14px}
+.type-card-description{font-size:18px;font-weight:600;line-height:1.8;margin:0 0 16px}
+.type-card-levels{font-size:12px;margin:0;line-height:1.9}
+@media(max-width:550px){.type-grid{grid-template-columns:1fr;gap:16px}.type-card{padding:20px}.cta-group{flex-direction:column}.cta-group button{width:100%;min-height:52px}.type-card-description{font-size:17px}}
+
+</style>
+<!-- END style.css -->
+</head>
+<body>
+  <header class="header"><a href="./" class="brand">SWITCH <span>やる気の見つけ方</span></a><span class="badge">社内研修ツール</span></header>
+  <main>
+    <section id="start-screen" class="intro">
+      <p class="eyebrow">MOTIVATION CHECK</p>
+      <h1>あなたのやる気スイッチは<br><span>どっち？</span></h1>
+      <p class="lead">制御焦点理論から見る仕事のモチベーション</p>
+      <div class="meta"><span>◷ 約1分</span><span>全6問</span><span>回答は保存されません</span></div>
+      <div class="guide"><strong>回答のヒント</strong><p>深く考えすぎず、普段の自分に近い数字を選ぼう</p></div>
+      <p class="disclaimer">このチェックは、制御焦点理論をもとにした簡易版です。正式な心理検査や人事評価には使えません。</p>
+      <button id="start" type="button">診断を始める</button>
+      <noscript><p>診断にはJavaScriptが必要です。JavaScriptを有効にしてページを開いてください。</p></noscript>
+    </section>
+    <section id="diagnosis" hidden aria-label="診断の質問">
+      <div class="progress-panel"><div><strong>あなたについて教えてください</strong><span id="progress-text" aria-live="polite">0 / 6 回答済み</span></div><progress id="progress" value="0" max="6" aria-label="回答の進捗"></progress></div>
+      <form id="questions"></form>
+      <div class="navigation"><button id="previous" type="button" disabled>前の質問へ</button><button id="next" type="button" hidden>次の質問へ</button></div>
+      <p class="footnote">回答はいつでも変更できます。選んだ内容はこの画面内だけで使用します。</p>
+    </section>
+    <section id="result" class="result" hidden aria-labelledby="result-title" tabindex="-1">
+      <p class="eyebrow">YOUR MOTIVATION</p>
+      <h2 id="result-title"></h2><p id="result-description" class="lead"></p>
+      <div class="scores"><article class="score promotion"><h3>促進焦点</h3><p><strong id="promotion-score"></strong><span> / 15点</span></p><p><span id="promotion-level"></span></p></article><article class="score prevention"><h3>予防焦点</h3><p><strong id="prevention-score"></strong><span> / 15点</span></p><p><span id="prevention-level"></span></p></article></div>
+      <div class="chart" aria-label="焦点別の得点比較">
+        <div class="bar-row"><label for="promotion-bar">促進焦点</label><meter id="promotion-bar" min="0" max="15" value="0"></meter><span id="promotion-bar-label"></span></div>
+        <div class="bar-row"><label for="prevention-bar">予防焦点</label><meter id="prevention-bar" min="0" max="15" value="0"></meter><span id="prevention-bar-label"></span></div>
+      </div>
+      <p class="note">高め・控えめに、良い・悪いはありません</p>
+      <h3 class="types-title">チームでの活かし方</h3>
+      <div class="types">
+        <article>
+          <svg class="team-illustration" viewBox="0 0 120 88" aria-hidden="true" focusable="false">
+            <rect x="8" y="8" width="104" height="72" rx="18" fill="#edf5ed"/>
+            <rect x="24" y="53" width="14" height="16" rx="3" fill="#b4d6bc"/>
+            <rect x="45" y="41" width="14" height="28" rx="3" fill="#8dbb9c"/>
+            <rect x="66" y="27" width="14" height="42" rx="3" fill="#5e9877"/>
+            <path d="M27 39L49 28L68 19L94 19M84 11L94 19L86 27" fill="none" stroke="#226c51" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="type-label">促進焦点が高い人には</span>
+          <h3>「こんな成果につながる」を伝える</h3>
+          <p class="team-example">例）「このやり方なら、提案の幅が広がります」</p>
+        </article>
+        <article>
+          <svg class="team-illustration" viewBox="0 0 120 88" aria-hidden="true" focusable="false">
+            <rect x="8" y="8" width="104" height="72" rx="18" fill="#edf3f9"/>
+            <rect x="28" y="22" width="35" height="47" rx="5" fill="#c2d6e8"/>
+            <rect x="37" y="17" width="17" height="10" rx="4" fill="#7fabc9"/>
+            <path d="M36 39L40 43L47 35M36 54L40 58L47 50M53 39H57M53 54H57" fill="none" stroke="#356998" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M81 29L97 35V48C97 60 88 68 81 71C74 68 65 60 65 48V35Z" fill="#7fabc9"/>
+            <path d="M73 48L79 54L90 42" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="type-label blue">予防焦点が高い人には</span>
+          <h3>「こんな問題を防げる」を伝える</h3>
+          <p class="team-example">例）「事前に確認すれば、ミスや手戻りを防げます」</p>
+        </article>
+      </div>
+      <p class="team-summary">促進と予防、どちらの視点もチームにとって大切です。お互いに補い合いながら、場面に合わせて使い分けていきましょう。</p>
+      <p class="disclaimer">このチェックは、制御焦点理論をもとにした簡易版です。正式な心理検査や人事評価には使えません。</p>
+      <div class="cta-group">
+        <button id="show-types" class="primary-cta" type="button">他のタイプも見てみる<small>4つのタイプを見てみる</small></button>
+        <button id="restart" class="secondary-cta" type="button">もう一度診断する</button>
+      </div>
+    </section>
+    <section id="type-list" class="result" hidden aria-labelledby="type-list-title" tabindex="-1">
+      <p class="eyebrow">FOUR MOTIVATION TYPES</p>
+      <h2 id="type-list-title">4つのタイプを見てみる</h2>
+      <p class="lead">それぞれのやる気スイッチを知って、チームで補い合いましょう。</p>
+      <div class="type-grid">
+        <article class="type-card type-a">
+          <div class="type-card-heading"><span class="type-letter">A</span><h3>タイプA：促進優位</h3></div>
+          <svg class="person-illustration" viewBox="0 0 120 88" aria-hidden="true" focusable="false">
+            <circle cx="44" cy="26" r="14" fill="white"/>
+            <path d="M17 74V65C17 50 28 43 44 43S71 50 71 65V74Z" fill="currentColor" opacity=".8"/>
+            <path d="M34 48L44 60L54 48" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+            <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M77 36L96 17M82 17H96V31"/></g>
+          </svg>
+          <p class="type-card-description">新しいことや成果にワクワクしやすい</p>
+          <p class="type-card-levels">促進焦点：高め ／ 予防焦点：控えめ</p>
+        </article>
+        <article class="type-card type-b">
+          <div class="type-card-heading"><span class="type-letter">B</span><h3>タイプB：両方高め</h3></div>
+          <svg class="person-illustration" viewBox="0 0 120 88" aria-hidden="true" focusable="false">
+            <circle cx="44" cy="26" r="14" fill="white"/>
+            <path d="M17 74V65C17 50 28 43 44 43S71 50 71 65V74Z" fill="currentColor" opacity=".8"/>
+            <path d="M34 48L44 60L54 48" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+            <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M76 27L84 35L97 19M77 52L84 60L97 44"/></g>
+          </svg>
+          <p class="type-card-description">成果も安全もどちらも気になる</p>
+          <p class="type-card-levels">促進焦点：高め ／ 予防焦点：高め</p>
+        </article>
+        <article class="type-card type-c">
+          <div class="type-card-heading"><span class="type-letter">C</span><h3>タイプC：両方控えめ</h3></div>
+          <svg class="person-illustration" viewBox="0 0 120 88" aria-hidden="true" focusable="false">
+            <circle cx="44" cy="26" r="14" fill="white"/>
+            <path d="M17 74V65C17 50 28 43 44 43S71 50 71 65V74Z" fill="currentColor" opacity=".8"/>
+            <path d="M34 48L44 60L54 48" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+            <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M76 26H98M76 51H98"/></g>
+          </svg>
+          <p class="type-card-description">仕事や場面によってスイッチが変わりやすい</p>
+          <p class="type-card-levels">促進焦点：控えめ ／ 予防焦点：控えめ</p>
+        </article>
+        <article class="type-card type-d">
+          <div class="type-card-heading"><span class="type-letter">D</span><h3>タイプD：予防優位</h3></div>
+          <svg class="person-illustration" viewBox="0 0 120 88" aria-hidden="true" focusable="false">
+            <circle cx="44" cy="26" r="14" fill="white"/>
+            <path d="M17 74V65C17 50 28 43 44 43S71 50 71 65V74Z" fill="currentColor" opacity=".8"/>
+            <path d="M34 48L44 60L54 48" fill="none" stroke="white" stroke-width="3" stroke-linejoin="round"/>
+            <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M87 17L99 23V34C99 44 92 50 87 53C82 50 75 44 75 34V23Z"/><path d="M81 32L86 37L94 28"/></g>
+          </svg>
+          <p class="type-card-description">ミスや抜け漏れが気になりやすい</p>
+          <p class="type-card-levels">促進焦点：控えめ ／ 予防焦点：高め</p>
+        </article>
+      </div>
+      <p class="note">高め・控えめに、良い・悪いはありません</p>
+      <p class="note">どちらかの得点が9点の場合は「中間タイプ」です。A〜Dのいずれにも分類しません。</p>
+      <div class="cta-group">
+        <button id="back-to-result" class="primary-cta" type="button">診断結果に戻る</button>
+        <button id="restart-from-types" class="secondary-cta" type="button">もう一度診断する</button>
+      </div>
+    </section>
+  </main>
+  <footer>やる気スイッチ診断 © MURAOKA</footer>
+
+<!-- BEGIN app.js -->
+<script>
+"use strict";
+
+const questions = [
+  { focus: "promotion", text: "仕事では、もっと良い成果や新しい可能性に目が向く" },
+  { focus: "prevention", text: "仕事では、ミスや問題を起こさないことが気になる" },
+  { focus: "promotion", text: "新しい方法を試せそうなら、まず可能性を考える" },
+  { focus: "prevention", text: "新しい方法を試す前に、失敗や影響を確認しておきたい" },
+  { focus: "promotion", text: "目標を立てるとき、達成したら何が得られるかを考える" },
+  { focus: "prevention", text: "目標を立てるとき、果たす責任や守ることを考える" }
+];
+const scale = ["当てはまらない", "あまり当てはまらない", "どちらともいえない", "やや当てはまる", "とても当てはまる"];
+const startScreen = document.querySelector("#start-screen");
+const form = document.querySelector("#questions");
+const diagnosis = document.querySelector("#diagnosis");
+const result = document.querySelector("#result");
+const previous = document.querySelector("#previous");
+const next = document.querySelector("#next");
+let answers = Array(questions.length).fill(null);
+let current = 0;
+
+function renderQuestion(focus = false) {
+  const question = questions[current];
+  form.innerHTML = `<fieldset><legend id="question-title" tabindex="-1"><span class="question-number">Q${current + 1} / ${questions.length}</span>${question.text}</legend><div class="options">${scale.map((label, index) => `<label class="option"><input type="radio" name="answer" value="${index + 1}" ${answers[current] === index + 1 ? "checked" : ""}><span><b>${index + 1}</b>${label}</span></label>`).join("")}</div></fieldset>`;
+  const count = answers.filter(value => value !== null).length;
+  document.querySelector("#progress").value = count;
+  document.querySelector("#progress-text").textContent = `質問 ${current + 1} / 6 · ${count} / 6 回答済み`;
+  previous.disabled = current === 0;
+  next.hidden = answers[current] === null;
+  next.textContent = current === questions.length - 1 ? "結果を見る" : "次の質問へ";
+  if (focus) document.querySelector("#question-title").focus();
+}
+
+// 選択された数値をそのまま加算する。逆転採点なし。
+function calculateScores(values) {
+  return questions.reduce((scores, question, index) => {
+    scores[question.focus] += values[index];
+    return scores;
+  }, { promotion: 0, prevention: 0 });
+}
+function scoreLevel(score) {
+  return score >= 10 ? "高め" : score === 9 ? "中間" : "控えめ";
+}
+function classify(scores) {
+  const promotion = scoreLevel(scores.promotion);
+  const prevention = scoreLevel(scores.prevention);
+  if (promotion === "中間" || prevention === "中間") {
+    return { title: "中間タイプ", description: "促進焦点と予防焦点のバランスや傾向が中間にあり、状況によって重視することが変わる可能性があります。" };
+  }
+  if (promotion === "高め" && prevention === "控えめ") {
+    return { title: "タイプA：促進優位", description: "新しいことや成果にワクワクしやすい" };
+  }
+  if (promotion === "高め" && prevention === "高め") {
+    return { title: "タイプB：両方高め", description: "成果も安全もどちらも気になる" };
+  }
+  if (promotion === "控えめ" && prevention === "控えめ") {
+    return { title: "タイプC：両方控えめ", description: "仕事や場面によってスイッチが変わりやすい" };
+  }
+  return { title: "タイプD：予防優位", description: "ミスや抜け漏れが気になりやすい" };
+}
+function showResult() {
+  if (answers.some(value => value === null)) return;
+  const scores = calculateScores(answers);
+  const type = classify(scores);
+  for (const focus of ["promotion", "prevention"]) {
+    document.querySelector(`#${focus}-score`).textContent = scores[focus];
+    document.querySelector(`#${focus}-level`).textContent = scoreLevel(scores[focus]);
+    document.querySelector(`#${focus}-bar`).value = scores[focus];
+    document.querySelector(`#${focus}-bar-label`).textContent = `${scores[focus]} / 15`;
+  }
+  document.querySelector("#result-title").textContent = type.title;
+  document.querySelector("#result-description").textContent = type.description;
+  startScreen.hidden = true;
+  diagnosis.hidden = true;
+  result.hidden = false;
+  result.focus();
+}
+function advance() {
+  if (answers[current] === null) return;
+  if (current === questions.length - 1) showResult();
+  else { current += 1; renderQuestion(true); }
+}
+form.addEventListener("submit", event => event.preventDefault());
+form.addEventListener("change", event => {
+  if (!event.target.matches('input[name="answer"]')) return;
+  answers[current] = Number(event.target.value);
+  advance();
+});
+previous.addEventListener("click", () => {
+  if (current === 0) return;
+  current -= 1;
+  renderQuestion(true);
+});
+next.addEventListener("click", advance);
+document.querySelector("#start").addEventListener("click", () => {
+  startScreen.hidden = true;
+  diagnosis.hidden = false;
+  renderQuestion(true);
+});
+function restartDiagnosis() {
+  answers = Array(questions.length).fill(null);
+  current = 0;
+  document.querySelector("#type-list").hidden = true;
+  result.hidden = true;
+  diagnosis.hidden = true;
+  startScreen.hidden = false;
+  renderQuestion();
+  document.querySelector("#start").focus();
+}
+renderQuestion();
+
+const typeList = document.querySelector("#type-list");
+document.querySelector("#show-types").addEventListener("click", () => {
+  result.hidden = true;
+  typeList.hidden = false;
+  typeList.focus();
+});
+document.querySelector("#back-to-result").addEventListener("click", () => {
+  typeList.hidden = true;
+  result.hidden = false;
+  result.focus();
+});
+document.querySelector("#restart").addEventListener("click", restartDiagnosis);
+document.querySelector("#restart-from-types").addEventListener("click", restartDiagnosis);
+
+</script>
+<!-- END app.js -->
+</body>
+</html>
