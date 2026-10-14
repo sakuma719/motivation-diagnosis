@@ -34,3 +34,17 @@ button{background:#246C53}
 .type-card-description{font-size:18px;font-weight:600;line-height:1.8;margin:0 0 16px}
 .type-card-levels{font-size:12px;margin:0;line-height:1.9}
 @media(max-width:550px){.type-grid{grid-template-columns:1fr;gap:16px}.type-card{padding:20px}.cta-group{flex-direction:column}.cta-group button{width:100%;min-height:52px}.type-card-description{font-size:17px}}
+
+/* A brief comparison before revealing the diagnosis. */
+#explanation:focus{outline:none}
+#explanation-title{font-size:26px;font-weight:600}
+.focus-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:28px 0;text-align:left}
+.focus-explainer{border-radius:14px;padding:24px;background:var(--focus-bg);color:var(--ink)}
+.focus-promotion{--focus-bg:#FBE7E0;--focus-accent:#B45440}
+.focus-prevention{--focus-bg:#E4EEF8;--focus-accent:#356998}
+.focus-icon{display:block;width:96px;height:72px;color:var(--focus-accent);margin-bottom:20px}
+.focus-explainer h3{font-size:18px;font-weight:600;line-height:1.8;margin:0 0 16px;color:var(--focus-accent)}
+.focus-explainer ul{padding-left:20px;margin:0;font-size:16px;line-height:1.9}
+.focus-explainer li+li{margin-top:12px}
+.focus-example{font-size:14px;line-height:1.9;border-top:1px solid var(--focus-accent);padding-top:16px;margin:22px 0 0}
+@media(max-width:550px){#explanation-title{font-size:23px}.focus-comparison{grid-template-columns:1fr;gap:16px}.focus-explainer{padding:22px 20px}.focus-explainer h3{font-size:17px}.focus-explainer ul{font-size:15px}}

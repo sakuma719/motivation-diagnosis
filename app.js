@@ -13,6 +13,7 @@ const startScreen = document.querySelector("#start-screen");
 const form = document.querySelector("#questions");
 const diagnosis = document.querySelector("#diagnosis");
 const result = document.querySelector("#result");
+const explanation = document.querySelector("#explanation");
 const previous = document.querySelector("#previous");
 const next = document.querySelector("#next");
 let answers = Array(questions.length).fill(null);
@@ -26,7 +27,7 @@ function renderQuestion(focus = false) {
   document.querySelector("#progress-text").textContent = `質問 ${current + 1} / 6 · ${count} / 6 回答済み`;
   previous.disabled = current === 0;
   next.hidden = answers[current] === null;
-  next.textContent = current === questions.length - 1 ? "結果を見る" : "次の質問へ";
+  next.textContent = current === questions.length - 1 ? "説明ページへ" : "次の質問へ";
   if (focus) document.querySelector("#question-title").focus();
 }
 
@@ -71,12 +72,20 @@ function showResult() {
   document.querySelector("#result-description").textContent = type.description;
   startScreen.hidden = true;
   diagnosis.hidden = true;
+  explanation.hidden = true;
   result.hidden = false;
   result.focus();
 }
+function showExplanation() {
+  if (answers.some(value => value === null)) return;
+  diagnosis.hidden = true;
+  result.hidden = true;
+  explanation.hidden = false;
+  explanation.focus();
+}
 function advance() {
   if (answers[current] === null) return;
-  if (current === questions.length - 1) showResult();
+  if (current === questions.length - 1) showExplanation();
   else { current += 1; renderQuestion(true); }
 }
 form.addEventListener("submit", event => event.preventDefault());
@@ -99,6 +108,7 @@ document.querySelector("#start").addEventListener("click", () => {
 function restartDiagnosis() {
   answers = Array(questions.length).fill(null);
   current = 0;
+  explanation.hidden = true;
   document.querySelector("#type-list").hidden = true;
   result.hidden = true;
   diagnosis.hidden = true;
@@ -121,3 +131,11 @@ document.querySelector("#back-to-result").addEventListener("click", () => {
 });
 document.querySelector("#restart").addEventListener("click", restartDiagnosis);
 document.querySelector("#restart-from-types").addEventListener("click", restartDiagnosis);
+
+document.querySelector("#view-result").addEventListener("click", showResult);
+document.querySelector("#review-answers").addEventListener("click", () => {
+  explanation.hidden = true;
+  diagnosis.hidden = false;
+  current = questions.length - 1;
+  renderQuestion(true);
+});

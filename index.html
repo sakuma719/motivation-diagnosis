@@ -43,6 +43,20 @@ button{background:#246C53}
 .type-card-levels{font-size:12px;margin:0;line-height:1.9}
 @media(max-width:550px){.type-grid{grid-template-columns:1fr;gap:16px}.type-card{padding:20px}.cta-group{flex-direction:column}.cta-group button{width:100%;min-height:52px}.type-card-description{font-size:17px}}
 
+/* A brief comparison before revealing the diagnosis. */
+#explanation:focus{outline:none}
+#explanation-title{font-size:26px;font-weight:600}
+.focus-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin:28px 0;text-align:left}
+.focus-explainer{border-radius:14px;padding:24px;background:var(--focus-bg);color:var(--ink)}
+.focus-promotion{--focus-bg:#FBE7E0;--focus-accent:#B45440}
+.focus-prevention{--focus-bg:#E4EEF8;--focus-accent:#356998}
+.focus-icon{display:block;width:96px;height:72px;color:var(--focus-accent);margin-bottom:20px}
+.focus-explainer h3{font-size:18px;font-weight:600;line-height:1.8;margin:0 0 16px;color:var(--focus-accent)}
+.focus-explainer ul{padding-left:20px;margin:0;font-size:16px;line-height:1.9}
+.focus-explainer li+li{margin-top:12px}
+.focus-example{font-size:14px;line-height:1.9;border-top:1px solid var(--focus-accent);padding-top:16px;margin:22px 0 0}
+@media(max-width:550px){#explanation-title{font-size:23px}.focus-comparison{grid-template-columns:1fr;gap:16px}.focus-explainer{padding:22px 20px}.focus-explainer h3{font-size:17px}.focus-explainer ul{font-size:15px}}
+
 </style>
 <!-- END style.css -->
 </head>
@@ -64,6 +78,29 @@ button{background:#246C53}
       <form id="questions"></form>
       <div class="navigation"><button id="previous" type="button" disabled>前の質問へ</button><button id="next" type="button" hidden>次の質問へ</button></div>
       <p class="footnote">回答はいつでも変更できます。選んだ内容はこの画面内だけで使用します。</p>
+    </section>
+    <section id="explanation" class="result" hidden aria-labelledby="explanation-title" tabindex="-1">
+      <p class="eyebrow">ABOUT YOUR MOTIVATION</p>
+      <h2 id="explanation-title">この診断でわかること</h2>
+      <p class="lead">促進焦点と予防焦点って？<br>仕事のやる気につながる、2つの視点を見てみましょう。</p>
+      <div class="focus-comparison">
+        <article class="focus-explainer focus-promotion">
+          <svg class="focus-icon" viewBox="0 0 96 72" aria-hidden="true" focusable="false"><rect x="12" y="45" width="15" height="17" rx="3" fill="currentColor" opacity=".4"/><rect x="35" y="32" width="15" height="30" rx="3" fill="currentColor" opacity=".65"/><rect x="58" y="18" width="15" height="44" rx="3" fill="currentColor"/><path d="M16 31L37 20L58 9H83M73 2L83 9L75 17" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>促進焦点｜もっと良くしたい</h3>
+          <ul><li>理想・成長・成果を目指す</li><li>「どんな可能性がある？」と考えやすい</li></ul>
+          <p class="focus-example">例：企画・提案・新しい挑戦</p>
+        </article>
+        <article class="focus-explainer focus-prevention">
+          <svg class="focus-icon" viewBox="0 0 96 72" aria-hidden="true" focusable="false"><rect x="11" y="15" width="34" height="47" rx="5" fill="currentColor" opacity=".25"/><rect x="20" y="10" width="16" height="10" rx="4" fill="currentColor"/><path d="M18 31L22 35L29 27M18 47L22 51L29 43" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M66 15L83 22V36C83 49 73 58 66 61C59 58 49 49 49 36V22Z" fill="currentColor" opacity=".8"/><path d="M57 35L64 42L76 28" fill="none" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <h3>予防焦点｜しっかり守りたい</h3>
+          <ul><li>安全・責任・正確さを重視する</li><li>「どうすればミスを防げる？」と考えやすい</li></ul>
+          <p class="focus-example">例：確認・品質管理・リスク対策</p>
+        </article>
+      </div>
+      <div class="cta-group">
+        <button id="view-result" class="primary-cta" type="button">診断結果を見る</button>
+        <button id="review-answers" class="secondary-cta" type="button">もう一度回答を見る</button>
+      </div>
     </section>
     <section id="result" class="result" hidden aria-labelledby="result-title" tabindex="-1">
       <p class="eyebrow">YOUR MOTIVATION</p>
@@ -186,6 +223,7 @@ const startScreen = document.querySelector("#start-screen");
 const form = document.querySelector("#questions");
 const diagnosis = document.querySelector("#diagnosis");
 const result = document.querySelector("#result");
+const explanation = document.querySelector("#explanation");
 const previous = document.querySelector("#previous");
 const next = document.querySelector("#next");
 let answers = Array(questions.length).fill(null);
@@ -199,7 +237,7 @@ function renderQuestion(focus = false) {
   document.querySelector("#progress-text").textContent = `質問 ${current + 1} / 6 · ${count} / 6 回答済み`;
   previous.disabled = current === 0;
   next.hidden = answers[current] === null;
-  next.textContent = current === questions.length - 1 ? "結果を見る" : "次の質問へ";
+  next.textContent = current === questions.length - 1 ? "説明ページへ" : "次の質問へ";
   if (focus) document.querySelector("#question-title").focus();
 }
 
@@ -244,12 +282,20 @@ function showResult() {
   document.querySelector("#result-description").textContent = type.description;
   startScreen.hidden = true;
   diagnosis.hidden = true;
+  explanation.hidden = true;
   result.hidden = false;
   result.focus();
 }
+function showExplanation() {
+  if (answers.some(value => value === null)) return;
+  diagnosis.hidden = true;
+  result.hidden = true;
+  explanation.hidden = false;
+  explanation.focus();
+}
 function advance() {
   if (answers[current] === null) return;
-  if (current === questions.length - 1) showResult();
+  if (current === questions.length - 1) showExplanation();
   else { current += 1; renderQuestion(true); }
 }
 form.addEventListener("submit", event => event.preventDefault());
@@ -272,6 +318,7 @@ document.querySelector("#start").addEventListener("click", () => {
 function restartDiagnosis() {
   answers = Array(questions.length).fill(null);
   current = 0;
+  explanation.hidden = true;
   document.querySelector("#type-list").hidden = true;
   result.hidden = true;
   diagnosis.hidden = true;
@@ -294,6 +341,14 @@ document.querySelector("#back-to-result").addEventListener("click", () => {
 });
 document.querySelector("#restart").addEventListener("click", restartDiagnosis);
 document.querySelector("#restart-from-types").addEventListener("click", restartDiagnosis);
+
+document.querySelector("#view-result").addEventListener("click", showResult);
+document.querySelector("#review-answers").addEventListener("click", () => {
+  explanation.hidden = true;
+  diagnosis.hidden = false;
+  current = questions.length - 1;
+  renderQuestion(true);
+});
 
 </script>
 <!-- END app.js -->
